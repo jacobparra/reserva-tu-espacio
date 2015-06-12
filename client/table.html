@@ -1,0 +1,33 @@
+<template name="table">
+
+<div class="col-md-3 col-sm-4 col-xs-6">
+  <div class="mesa-wrapper">
+    <div class="mesa sillas-{{ seatsCount }} invitados-{{ guestsCount }}">
+      <span class="status">{{ guestsCount }}/{{ seatsCount }}</span>
+      <div class="accion">
+        <h2>Invitados en esta mesa</h2>
+        <ul>
+          {{#each guests}}
+          <li>{{ fullname }}</li>
+          {{/each}}
+          <li class="disponibles">(Quedan <b><span>{{ available }}</span> cupos disponibles</b>)</li>
+        </ul>
+        <div class="reservar">
+          {{#if canReserve}}
+          <button class="btn">Reservar mi cupo</button>
+          {{else}}
+          <span>Esta mesa ya está completa</span>
+          {{/if}}
+        </div>
+      </div>
+      <div class="mesa-view"><p>Mesa {{ number }}</p></div>
+      <div class="invitados">
+        {{#each seats}}
+        <div class="silla"></div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
+</template>

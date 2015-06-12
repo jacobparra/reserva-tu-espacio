@@ -1,0 +1,79 @@
+<template name="admin">
+
+<div class="row" style="background: #ccc;">
+  <div class="col-xs-12">
+
+    <form class="form">
+
+      <div class="form-group">
+        <label for="fullname">Nombre</label>
+        <input type="text" class="form-control" id="fullname" name="fullname">
+      </div>
+
+      <div class="form-group">
+        <label for="gen">Generación</label>
+        <input type="text" class="form-control" id="gen" name="gen">
+      </div>
+
+      <div class="form-group">
+        <label for="rut">RUT</label>
+        <input type="text" class="form-control" id="rut" name="rut">
+      </div>
+
+      <div class="checkbox clearfix">
+        <label><input type="checkbox" value="" name="paid"> Pagó</label>
+      </div>
+
+      <div class="form-group">
+        <label for="paymentMethod">Método de pago</label>
+        <select class="form-control" id="paymentMethod" name="paymentMethod">
+          <option value="Transferencia">Transferencia</option>
+          <option value="Crédito">Crédito</option>
+          <option value="Débito">Débito</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="paymentDate">Fecha de pago</label>
+        <input type="text" class="form-control" id="paymentDate" name="paymentDate">
+      </div>
+
+      <button type="submit" class="btn btn-default">Guardar</button>
+    </form>
+
+  </div>
+</div>
+
+
+
+
+<hr />
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Generación</th>
+          <th>RUT</th>
+          <th>Pagó</th>
+          <th>Método de pago</th>
+          <th>Fecha de pago</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each guests}}
+          {{> adminGuest}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</template>

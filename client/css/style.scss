@@ -1,0 +1,551 @@
+/*
+
+	$VARIABLES & MIXINS
+
+*/
+$color-invitado: #48aa64; // Color destacado 
+$color-empresa: #3a454e; // Color corporativo
+$color-mesa: #999; // Color mesa y silla inactiva
+@mixin transition{
+	transition: all .2s ease-in-out;
+}
+
+
+
+
+
+/*
+
+	$GENERALES
+
+*/
+body{
+	background: #f9f9f9;
+}
+h1{
+	font-size: 1.8em !important;
+}
+.btn{
+	border-radius: 30px;
+	height: 35px;
+	line-height: 32px;
+	padding: 0 20px;
+	color: #FFF;
+	border: 2px solid #FFF;
+	background: transparent; 
+	@include transition;
+	&:hover{
+		background: $color-invitado;
+		color:#FFF;
+	}
+}
+form{
+	padding-top: 10px;
+	input{
+		-webkit-border-top-left-radius: 30px;
+		-webkit-border-bottom-left-radius: 30px;
+		-moz-border-radius-topleft: 30px;
+		-moz-border-radius-bottomleft: 30px;
+		border-top-left-radius: 30px;
+		border-bottom-left-radius: 30px;
+		height: 35px;
+		line-height: 32px;
+		border: 2px solid $color-mesa;
+		background: #DDD;
+		margin: 0;
+		padding: 0 10px;
+		float: left;
+		font-size: 0.7em;
+		@include transition;
+		&:focus{
+			border: 2px solid $color-invitado;
+			background: #EEE;
+			outline: 0;
+		}
+	}
+	.btn-form{
+		-webkit-border-top-right-radius: 30px;
+		-webkit-border-bottom-right-radius: 30px;
+		-moz-border-radius-topright: 30px;
+		-moz-border-radius-bottomright: 30px;
+		border-top-right-radius: 30px;
+		border-bottom-right-radius: 30px;
+		font-size: 0.7em;
+		height: 35px;
+		line-height: 28px;
+		padding: 0 20px;
+		color: #FFF;
+		border: 2px solid $color-invitado;
+		background: $color-invitado; 
+		margin:0;
+		float: left;
+		@include transition;
+		&:hover{
+			opacity: 0.8;
+		}
+	}
+}
+.col-md-3{
+	padding: 2px;
+	@media only screen and (max-width: 480px) {
+		width: 100% !important;
+	}
+}
+.col-md-12{
+	padding: 0px 2px 2px 2px;
+}
+header{
+	height: 100px;
+	overflow: hidden;
+	.logo{
+		width: 180px;
+		height: 100%;
+		background: $color-empresa;
+		float: left;
+		overflow: hidden;
+		img{
+			width: 100%;
+			height: auto;
+			@media only screen and (max-width: 480px) {
+				height: 100px;
+				width: auto;
+			}
+		}
+		@media only screen and (max-width: 480px) {
+			width: 100%;
+		}
+	}
+	.nombre-empresa{
+		width: calc(100% - 180px);
+		height: 100%;
+		background: darken($color-empresa,10%);
+		float: right;
+		line-height: 100px;
+		padding-left: 20px;
+		color: #FFF;
+		font-size: 1.4em;
+		text-transform: uppercase;
+		@media only screen and (max-width: 480px) {
+			display: none;
+		}
+	}
+}
+.jumbotron{
+	font-size: 1.3em;
+	margin: 0;
+	border-radius: 0 !important;
+	background: #ccc;
+	color: #333;
+	h1{
+		margin: 0;
+	}
+}
+.nav{
+	padding: 2px;
+	margin-top: -4px;
+	.col-md-12{
+		height: 50px;
+		line-height: 50px;
+		background: #CCC;	
+		border-top: 1px solid #AAA;
+		padding: 0 20px;
+		@media only screen and (max-width: 480px) {
+			display: none;
+		}
+		.nav-options{
+			float: left;
+			text-decoration: underline;
+			cursor: pointer;
+			color: #666;
+			&:hover{
+				color: $color-invitado;
+			}
+		}
+		form{
+			float: right;
+			padding-top: 7px;
+			font-size: 1.2em;
+			.btn-form{
+				background: $color-mesa;
+				border: $color-mesa;
+				&:hover{
+					opacity: 0.7;
+				}
+			}
+		}
+	}
+}
+.mesa-wrapper{
+	position:relative;
+    width:100%;
+    padding-bottom:100%;
+    height:0;
+}
+.mesa{
+	position:absolute;
+    width:100%;
+    height:100%;
+    background:#ebebeb;
+    .status{
+    	padding: 5px 10px;
+    	background: #DDD;
+    	position: absolute;
+    	right: 0px;
+    	font-size: 0.8em;
+    	bottom:0;
+    	color: #777;
+    }
+    .accion{
+		width: calc(100% + 10px);
+		height: calc(100% + 60px);
+		margin-left: -5px;
+		margin-top: -30px;
+		background: $color-invitado;
+		z-index: 2;
+		position: relative;
+		color: #FFF;
+		padding: 15px;
+		opacity: 0;
+		transition: all .2s ease-in-out;
+	    transform: scale(0.8);
+	    -webkit-box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.32);
+		-moz-box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.32);
+		box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.32);
+		@media only screen and (max-width: 480px) {
+			width: 100%;
+			margin-left: 0;
+		}
+		h2{
+			font-size: 1.3em;
+			margin: 0;
+			border-bottom: 1px solid #FFF;
+			margin-bottom:10px;
+			padding-bottom: 5px; 
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			li{
+				font-size: 0.9em;
+				&.disponibles{
+					opacity: 0.7;
+				}
+				&:before{
+					content:"\e008";
+					font-family: 'Glyphicons Halflings';
+					padding-right: 5px;
+				}
+				&:last-child{
+					&:before{
+						display: none;
+					}
+				}
+			}
+		}
+		.reservar{
+			width: 100%;
+			padding: 10px 0;
+			background: darken($color-invitado, 15%);
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			text-align: center;
+			span{
+				line-height: 35px;
+			}
+		}
+		@media only screen and (max-width: 480px) {
+			opacity: 1;
+			transform: scale(1);
+			display: none;
+		}		
+	}
+	&:hover .accion{
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+.mesa-view{
+	position: absolute;
+	top: 50%; left: 50%;
+	margin: -3.6em;
+	width: 7.2em; height: 7.2em;
+	background: $color-mesa;
+	border-radius: 50%;
+	p{
+		font-size: 1em;
+		color: #DDD;
+		line-height: 7.2em;
+		text-align: center;
+	}
+}
+.silla{
+	position: absolute;
+	top: 50%; left: 50%;
+	margin: -0.8em;
+	width: 1.6em; height: 1.6em;
+	background:lighten($color-mesa,10%);
+	border-radius: 50%;
+}
+.footer{
+	padding:2px 2px 0 2px; 
+	div{
+		height: 80px;
+		line-height: 80px;
+		background: darken($color-empresa,10%);
+		text-align: center;
+		color: #FFF;
+	}
+}
+
+
+
+
+
+/*
+
+	$CANTODAD DE INVITADOS
+
+*/
+.invitados-1{
+	.silla:nth-child(1){
+		background: $color-invitado;
+	}
+}
+.invitados-2{
+	.silla:nth-child(1),
+	.silla:nth-child(2){
+		background: $color-invitado;
+	}
+}
+.invitados-3{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3){
+		background: $color-invitado;
+	}
+}
+.invitados-4{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4){
+		background: $color-invitado;
+	}
+}
+.invitados-5{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5){
+		background: $color-invitado;
+	}
+}
+.invitados-6{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6){
+		background: $color-invitado;
+	}
+}
+.invitados-7{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6),
+	.silla:nth-child(7){
+		background: $color-invitado;
+	}
+}
+.invitados-8{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6),
+	.silla:nth-child(7),
+	.silla:nth-child(8){
+		background: $color-invitado;
+	}
+}
+.invitados-9{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6),
+	.silla:nth-child(7),
+	.silla:nth-child(8),
+	.silla:nth-child(9){
+		background: $color-invitado;
+	}
+}
+.invitados-10{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6),
+	.silla:nth-child(7),
+	.silla:nth-child(8),
+	.silla:nth-child(9),
+	.silla:nth-child(10){
+		background: $color-invitado;
+	}
+}
+.invitados-11{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6),
+	.silla:nth-child(7),
+	.silla:nth-child(8),
+	.silla:nth-child(9),
+	.silla:nth-child(10),
+	.silla:nth-child(11){
+		background: $color-invitado;
+	}
+}
+.invitados-12{
+	.silla:nth-child(1),
+	.silla:nth-child(2),
+	.silla:nth-child(3),
+	.silla:nth-child(4),
+	.silla:nth-child(5),
+	.silla:nth-child(6),
+	.silla:nth-child(7),
+	.silla:nth-child(8),
+	.silla:nth-child(9),
+	.silla:nth-child(10),
+	.silla:nth-child(11),
+	.silla:nth-child(12){
+		background: $color-invitado;
+	}
+}
+
+
+
+
+
+
+/*
+
+	$CANTODAD DE SILLAS POR MESA
+
+*/
+.sillas-12{
+	$n: 12;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-11{
+	$n: 11;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-10{
+	$n: 10;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-9{
+	$n: 9;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-8{
+	$n: 8;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-7{
+	$n: 7;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-6{
+	$n: 6;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
+.sillas-5{
+	$n: 5;
+	.silla {
+		@for $i from 0 to $n {
+			&:nth-child(#{$i + 1}) {
+				transform: rotate($i*360deg/$n) translate(5em);
+				-ms-transform: rotate($i*360deg/$n) translate(5em);
+				-webkit-transform: rotate($i*360deg/$n) translate(5em);
+				-moz-transform: rotate($i*360deg/$n) translate(5em);
+			}
+		}
+	}
+}
